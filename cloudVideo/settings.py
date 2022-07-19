@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework_simplejwt",
+    "drf_spectacular",
     "users",
 ]
 
@@ -130,3 +131,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # auth user model initilization
 AUTH_USER_MODEL = "users.User"
+
+# REST fRAMEWORK BASED SETTINGS
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}

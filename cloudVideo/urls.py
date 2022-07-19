@@ -18,19 +18,16 @@ from django.urls import path, include
 from rest_framework.schemas import get_schema_view
 from users import urls as users_url
 from django.views.generic import TemplateView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("session-auth/", include("rest_framework.urls")),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "swagger/",
-        TemplateView.as_view(template_name="swagger.html", extra_context={"schema_url": "openapi-schema"}),
+        "docs/",
+        SpectacularSwaggerView.as_view(template_name="swagger-ui.html", url_name="schema"),
         name="swagger-ui",
     ),
-    path(
-        "openapi",
-        get_schema_view(title="CloudApi", description="API for all things", version="1.0.0"),
-        name="openapi-schema",
-    ),
-    path("api/users/", include(users_url)),
+    path("users/", include(users_url)),
 ]
