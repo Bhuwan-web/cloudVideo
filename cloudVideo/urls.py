@@ -15,9 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.schemas import get_schema_view
-from users import urls as users_url
-from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
@@ -29,5 +26,5 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(template_name="swagger-ui.html", url_name="schema"),
         name="swagger-ui",
     ),
-    path("users/", include(users_url)),
+    path("users/", include("users.urls")),
 ]

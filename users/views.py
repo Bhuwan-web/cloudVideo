@@ -19,16 +19,6 @@ class CreateUserView(generics.CreateAPIView):
 class LoginUserView(APIView):
     serializer_class = LoginUserSerializer
 
-    # def get(self, request):
-    #     return Response(
-    #         {
-    #             "error": [
-    #                 "Get Requset not available for login User",
-    #                 "If redirecred from other api's make sure the user is properly logged in",
-    #             ]
-    #         }
-    #     )
-
     def post(self, request: Request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
