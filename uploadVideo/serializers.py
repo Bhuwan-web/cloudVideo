@@ -15,3 +15,9 @@ class VideoDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.VideoDetails
         fields = "__all__"
+
+
+class CalculatePricingSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = models.CalculatePricing
+        fields = "__all__"

@@ -8,6 +8,8 @@ router.register(r"videos", views.ReceiveVideoViews, basename="videos")
 
 urlpatterns = [
     # videos/
-    path("details/", views.VideoDetailViews.as_view())
+    path("details/", views.VideoDetailViews.as_view()),
+    path("details/<int:pk>", views.VideoDetailRetriveView.as_view()),
+    path("calculate-price/", views.CalculatePriceView.as_view()),
 ]
 urlpatterns += router.urls
