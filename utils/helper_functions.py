@@ -6,7 +6,7 @@ from datetime import timedelta
 def byte_to_mb(byte) -> float:
     """File size in Mb"""
     unit_mb = 0.000001
-    return byte * unit_mb
+    return round(byte * unit_mb, 3)
 
 
 def video_extension(video_path) -> str:
