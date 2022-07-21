@@ -45,8 +45,8 @@ class VideoDetailRetriveView(RetrieveAPIView, VideoDetailViews):
 
 
 class CalculatePriceView(CreateAPIView):
-    queryset = models.CalculatePricing.objects.all()
-    serializer_class = serializers.CalculatePricingSerialiser
+    # queryset = models.CalculatePricing.objects.all()
+    serializer_class = serializers.CalcSer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -54,4 +54,4 @@ class CalculatePriceView(CreateAPIView):
         data = serializer.data
         json_total_price = perform_price_calculation(data)
         headers = self.get_success_headers(serializer.data)
-        return Response({**data, **json_total_price}, status=status.HTTP_201_CREATED, headers=headers)
+        return Response({**data, **json_total_price}, status=status.HTTP_200_OK, headers=headers)

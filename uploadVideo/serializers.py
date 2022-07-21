@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from uploadVideo.custom_validations import file_length_validation, file_size_validation
 from . import models
 
 
@@ -17,7 +18,14 @@ class VideoDetailsSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class CalculatePricingSerialiser(serializers.ModelSerializer):
-    class Meta:
-        model = models.CalculatePricing
-        fields = "__all__"
+# class CalculatePricingSerialiser(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.CalculatePricing
+#         fields = "__all__"
+
+
+class CalcSer(serializers.Serializer):
+
+    duration = serializers.DurationField(validators=[file_length_validation])  # in timedelta
+    type = serializers.CharField(max_length=20)
+    size = serializers.CharField(max_length=120, validators=[file_size_validation])

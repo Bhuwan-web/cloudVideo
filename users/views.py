@@ -6,8 +6,8 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from .serializers import CreateUserSerializer, LoginUserSerializer, UserSerializer
 from .models import User
-from rest_framework_simplejwt.tokens import AccessToken
-
+from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
+from rest_framework import status
 
 # View for creating user
 class CreateUserView(generics.CreateAPIView):
@@ -26,8 +26,12 @@ class LoginUserView(APIView):
             if not user:
                 return Response({"error": "wrong credentials"}, status=400)
             access_token = AccessToken.for_user(user)
-            return Response({"access_token": str(access_token)})
-        return Response({"error": "wrong credentials"}, status=400)
+            refresh_token = RefreshToken.for_user(user)
+            return Response(
+                {"access_token": str(access_token), "refresh_token": str(refresh_token)},
+                status=status.HTTP_200_OK,
+            )
+        return Response({"error": "wrong credentials"}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
 # get current authenticated user
