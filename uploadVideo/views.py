@@ -29,6 +29,7 @@ class ReceiveVideoViews(ModelViewSet):
 
 
 class VideoDetailViews(ListAPIView):
+    # queryset = models.VideoDetails.user_obj.all()
     serializer_class = serializers.VideoDetailsSerializer
     permission_classes = [IsAuthenticated, IsOwner]
     filterset_fields = {"duration": ["gte", "lte"], "size": ["gte", "lte"]}
