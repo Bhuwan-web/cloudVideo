@@ -12,6 +12,7 @@ def byte_to_mb(byte) -> float:
 
 
 def video_extension(video_path) -> str:
+    """Extract the extention from the video"""
     return pathlib.Path(video_path).suffix
 
 
