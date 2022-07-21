@@ -45,7 +45,6 @@ class VideoDetailRetriveView(RetrieveAPIView, VideoDetailViews):
 
 
 class CalculatePriceView(CreateAPIView):
-    # queryset = models.CalculatePricing.objects.all()
     serializer_class = serializers.CalcSer
 
     def create(self, request, *args, **kwargs):
