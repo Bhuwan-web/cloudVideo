@@ -1,6 +1,6 @@
 import pathlib
 from moviepy.editor import VideoFileClip
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from utils.price_calc import json_total_pricing
 
@@ -23,11 +23,12 @@ def video_length(video_path) -> int:
 
 def get_duration(video_path: str) -> timedelta:
     """return video length in time delata"""
-    return timedelta(video_length(video_path))
+    # return datetime(second=video_length(video_path))
+    return timedelta(seconds=video_length(video_path))
 
 
 def time_to_sec(t):
-    h, m, s = map(int, t.split(":"))
+    h, m, s = map(float, t.split(":"))
     return h * 3600 + m * 60 + s
 
 

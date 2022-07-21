@@ -11,7 +11,7 @@ def charge_per_length(sec: int) -> float:
     return 20
 
 
-def total_pricing(size: float, sec: int) -> float:
+def total_pricing(size: float, sec: int | float) -> float:
     return charge_per_length(sec) + charge_per_size(size)
 
 

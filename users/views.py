@@ -13,6 +13,8 @@ from rest_framework import status
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
+    permission_classes = []
+    authentication_classes = []
 
 
 # View for getting an access token
