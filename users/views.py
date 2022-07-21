@@ -20,6 +20,8 @@ class CreateUserView(generics.CreateAPIView):
 # View for getting an access token
 class LoginUserView(APIView):
     serializer_class = LoginUserSerializer
+    authentication_classes = []
+    permission_classes = []
 
     def post(self, request: Request):
         serializer = self.serializer_class(data=request.data)
